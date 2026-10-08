@@ -1,0 +1,67 @@
+/* Praxia · unete · variante A "street smarts" (neo-brutalista) · celular primero · sin recursos externos */
+:root{--paper:#efe9dd;--card:#f4f1ec;--ink:#121110;--dim:#4a443f;--acid:#d97757;--err:#a32a1c;
+  --display:Impact,Haettenschweiler,'Roboto Condensed','Arial Narrow Bold','Arial Narrow','Archivo',sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:500 16px/1.5 'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--acid)}
+.mono{font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+
+/* barra superior negra: logo + sello */
+.top{background:var(--ink);border-bottom:4px solid var(--ink)}
+.top-in{max-width:1040px;margin:0 auto;padding:6px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{display:block;width:128px;height:auto;margin-left:-14px}
+.seal{font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.14em;color:var(--card);border:2px solid var(--card);border-radius:999px;padding:6px 12px;white-space:nowrap}
+
+.grid{max-width:1040px;margin:0 auto;padding:22px 18px 40px;display:grid;gap:26px}
+.tag{display:inline-block;font-family:var(--mono);font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--acid);color:var(--ink);border:2px solid var(--ink);padding:5px 10px;margin:0 0 14px}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(38px,11.5vw,64px);line-height:1.06;letter-spacing:.005em;margin:0 0 14px}
+h1 mark{background:var(--ink);color:var(--card);padding:0 8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(28px,8vw,38px);line-height:1.02;margin:0 0 16px}
+.lead{font-size:17px;font-weight:600;margin:0 0 6px;max-width:30em}
+.micro{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin:0}
+
+/* motivo pixel: tira de cuadrados con bordes duros + X granular del simbolo */
+.strip{height:28px;margin:22px 0 0;border:3px solid var(--ink);background:
+  conic-gradient(var(--ink) 25%,var(--acid) 0 50%,var(--ink) 0 75%,var(--acid) 0) 0 0/28px 28px;image-rendering:pixelated}
+.row{display:flex;gap:14px;align-items:flex-end;justify-content:space-between}
+.tile{flex:none;width:84px;background:var(--ink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--acid);padding:4px;margin:0 6px 4px 0}
+.tile img{display:block;width:100%;height:auto;image-rendering:pixelated}
+
+/* tarjeta con sombra dura */
+.card{background:var(--card);border:4px solid var(--ink);border-radius:18px;padding:22px 18px;box-shadow:8px 9px 0 var(--acid)}
+.card .mini{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 16px;padding-bottom:12px;border-bottom:3px solid var(--ink)}
+.field{margin:0 0 14px}
+label{display:block;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+input[type=text],input[type=tel],input[type=email]{width:100%;min-height:50px;padding:0 14px;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;font:inherit;font-size:16px;font-weight:600;-webkit-appearance:none;appearance:none}
+input::placeholder{color:#6b655d;font-weight:500}
+input[aria-invalid=true]{border-color:var(--err);background:#fff4f1}
+.err{color:var(--err);font-weight:700;font-size:13.5px;margin:6px 0 0}
+.err:empty{display:none}
+.check{display:grid;grid-template-columns:26px 1fr;gap:0 10px;align-items:start}
+.check input{width:24px;height:24px;margin:1px 0 0;accent-color:var(--ink)}
+.check label{font-family:inherit;font-weight:500;font-size:14px;letter-spacing:0;text-transform:none;margin:0}
+.check .err{grid-column:2}
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:60px;margin:18px 0 0;padding:0 18px;background:var(--ink);color:var(--card);border:3px solid var(--ink);border-radius:14px;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.03em;text-transform:uppercase;text-align:center;text-decoration:none;cursor:pointer;box-shadow:0 0 0 var(--acid);transition:transform .08s,box-shadow .08s}
+#btn::after{content:"→";font-family:var(--mono);font-size:24px}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--acid)}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--acid)}
+.btn:disabled{opacity:.7;cursor:wait}
+.btn.alt{background:var(--card);color:var(--ink)}
+.priv{font-size:12.5px;line-height:1.45;color:var(--dim);margin:14px 0 0}
+#ok .btn{font-size:20px;min-height:56px}
+#ok:focus{outline:none}
+[hidden]{display:none!important}
+
+@media (min-width:860px){
+  .logo{width:150px}
+  .top-in{padding:8px 24px}
+  .grid{grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;padding-top:48px}
+  .grid:has(#intro[hidden]){grid-template-columns:minmax(0,520px);justify-content:center}
+  .card{padding:28px 26px}
+  .row{display:block}
+  .strip{margin-top:40px}
+  .tile{width:210px;margin:34px 0 0;border-width:4px;box-shadow:10px 11px 0 var(--acid);padding:10px}
+}
+@media (max-width:359px){.seal{font-size:9.5px;padding:5px 8px}}

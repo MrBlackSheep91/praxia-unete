@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Praxia</title>
+<meta name="robots" content="noindex">
+<style>
+body{margin:0;background:#121110;color:#f4f1ec;font:400 16px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}
+a{color:#f4f1ec;font-weight:700;display:inline-block;margin-top:12px;padding:12px 20px;border:2px solid #d97757;border-radius:10px;text-decoration:none}
+a:focus-visible{outline:3px solid #f4f1ec;outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <h1 style="font-size:22px;margin:0 0 6px">No encontramos esa página</h1>
+  <p id="msg" style="margin:0;color:#b9b3ab">Te llevamos al inicio.</p>
+  <a id="home" href="/">Ir al inicio</a>
+</main>
+<!--
+  Rutas por vendedor para GitHub Pages: /<nombre> -> <raiz>/?ref=<codigo> (conserva ?src=).
+  SITE_ROOT: "/" si el sitio vive en la raiz de un dominio; "/<repo>/" si es un sitio de proyecto de GitHub Pages.
+  Script en linea a proposito: este archivo se sirve en cualquier profundidad de ruta y no puede depender de rutas relativas.
+-->
+<script>
+/* PRAXIA-404-START */
+(function () {
+  'use strict';
+  var SITE_ROOT = '/praxia-unete/';
+  var RESERVED = ['a', 'b', 'vendedores.html', 'index.html', 'assets', '404.html', 'capturas', 'style.css', 'app.js', 'fonts.css'];
+
+  // Misma funcion que app.js (copia literal; test-variantes.mjs verifica que sea identica).
+  function normalizeRef(raw) {
+    var s = String(raw == null ? '' : raw).toLowerCase();
+    try { s = s.normalize('NFD').replace(/[̀-ͯ]/g, ''); } catch (e) { /* sin normalize */ }
+    s = s.replace(/[^a-z0-9_-]/g, '').slice(0, 40);
+    return s || 'directo';
+  }
+
+  // Funcion pura: (pathname, search, siteRoot) -> { ref, url }. url = null si no hay que redirigir.
+  function routeFor(pathname, search, siteRoot) {
+    var root = siteRoot || '/';
+    var p = String(pathname || '/');
+    if (p.indexOf(root) === 0) p = p.slice(root.length); else p = p.replace(/^\/+/, '');
+    var seg = p.split('/')[0] || '';
+    var decoded = seg;
+    try { decoded = decodeURIComponent(seg); } catch (e) { return { ref: null, url: null }; } // percent mal formado: no es un vendedor
+    decoded = decoded.trim();
+    if (!decoded) return { ref: null, url: null };
+    var low = decoded.toLowerCase();
+    if (RESERVED.indexOf(low) !== -1 || low.indexOf('.') !== -1) return { ref: null, url: null };
+    var ref = normalizeRef(decoded);
+    if (ref === 'directo' && low !== 'directo') return { ref: null, url: null }; // solo simbolos: no es un vendedor
+    var url = root + '?ref=' + encodeURIComponent(ref);
+    var src = new URLSearchParams(search || '').get('src');
+    if (src) url += '&src=' + encodeURIComponent(src);
+    return { ref: ref, url: url };
+  }
+
+  if (typeof module !== 'undefined' && module.exports) { module.exports = { routeFor: routeFor, normalizeRef: normalizeRef }; }
+  if (typeof document === 'undefined' || typeof location === 'undefined') return;
+  document.getElementById('home').setAttribute('href', SITE_ROOT);
+  var r = routeFor(location.pathname, location.search, SITE_ROOT);
+  if (r.url) {
+    document.getElementById('msg').textContent = 'Te llevamos a tu acceso…';
+    location.replace(r.url);
+  }
+})();
+/* PRAXIA-404-END */
+</script>
+</body>
+</html>
