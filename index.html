@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seminario gratis «Primeros pasos en la IA» · Praxia</title>
+<meta name="description" content="Aprende a usar la IA en tu trabajo o en tu negocio. Seminario gratis hoy jueves 8 de octubre, 8:00 p. m. hora de Colombia, por Zoom.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121110">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Praxia">
+<meta property="og:title" content="Seminario gratis «Primeros pasos en la IA» · Praxia">
+<meta property="og:description" content="Aprende a usar la IA en tu trabajo o en tu negocio. Hoy jueves 8 de octubre, 8:00 p. m. hora de Colombia, por Zoom.">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <img class="logo" src="logo-horizontal-oscuro.png" alt="Praxia" width="160" height="40">
+
+  <section id="intro">
+    <h1>Aprende a usar la IA en tu trabajo o en tu negocio</h1>
+    <p class="lead">Seminario gratis «Primeros pasos en la IA»: hoy jueves 8 de octubre, 8:00 p. m. hora de Colombia, por Zoom.</p>
+  </section>
+
+  <form id="form" data-lead novalidate autocomplete="on">
+    <input type="hidden" name="vendedor" value="directo">
+    <input type="hidden" name="ref" value="directo">
+
+    <div class="field">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="e-nombre">
+      <p class="err" id="e-nombre" role="alert"></p>
+    </div>
+    <div class="field">
+      <label for="whatsapp">WhatsApp con código de país</label>
+      <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="+57 300 123 4567" required aria-describedby="e-whatsapp">
+      <p class="err" id="e-whatsapp" role="alert"></p>
+    </div>
+    <div class="field">
+      <label for="email">Correo</label>
+      <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required aria-describedby="e-email">
+      <p class="err" id="e-email" role="alert"></p>
+    </div>
+    <div class="field check">
+      <input id="consent" name="consent" type="checkbox" value="si" required aria-describedby="e-consent">
+      <label for="consent">Acepto que Praxia me contacte por correo y WhatsApp sobre el seminario y la comunidad.</label>
+      <p class="err" id="e-consent" role="alert"></p>
+    </div>
+    <button id="btn" class="btn" type="submit">Quiero mi acceso</button>
+    <p class="priv">Usamos tus datos solo para esto y puedes pedir que los borremos escribiendo a juanvalderrama@praxiaclub.com.</p>
+  </form>
+
+  <section id="ok" tabindex="-1" hidden aria-live="polite">
+    <h2>¡Listo, <span id="ok-nombre"></span>! Tu acceso:</h2>
+    <a class="btn" href="https://us06web.zoom.us/j/2411834937?pwd=VMdDqUSH9bmFulStR44VmJWD4kCLHA.1&amp;omn=89924839785" target="_blank" rel="noopener">Entrar al seminario (Zoom)</a>
+    <a class="btn alt" href="https://whatsapp.com/channel/0029VbEDpVA6hENrgjZx3Y0P" target="_blank" rel="noopener">Sigue el canal de Praxia en WhatsApp</a>
+    <p class="priv">Entra unos minutos antes para probar el audio.</p>
+  </section>
+</main>
+
+<script src="app.js" defer></script>
+<script src="https://axishub.duckdns.org/track/t.js?site=praxia-unete" data-site="praxia-unete" defer></script>
+</body>
+</html>

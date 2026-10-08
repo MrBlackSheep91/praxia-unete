@@ -1,0 +1,30 @@
+/* Praxia · unete · paleta C · celular primero */
+:root{--bg:#121110;--panel:#1c1a18;--line:#4a443f;--ink:#f4f1ec;--dim:#b4aea6;--acid:#d97757;--err:#ff9b8a;--r:12px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.wrap{max-width:480px;margin:0 auto;padding:14px 20px 32px}
+.logo{display:block;width:140px;height:auto;margin:0 0 14px -16px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+h1{font-weight:800;font-size:clamp(26px,7.4vw,36px);line-height:1.1;margin:0 0 10px}
+h2{font-weight:800;font-size:26px;line-height:1.15;margin:8px 0 18px}
+.lead{color:var(--dim);font-size:16px;margin:0 0 16px}
+.field{margin:0 0 10px}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 4px}
+input[type=text],input[type=tel],input[type=email]{width:100%;min-height:46px;padding:0 14px;background:var(--panel);color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r);font:inherit;font-size:16px}
+input::placeholder{color:#8a847c}
+input[aria-invalid=true]{border-color:var(--err)}
+.err{color:var(--err);font-size:13px;margin:4px 0 0}
+.err:empty{display:none}
+.check{display:grid;grid-template-columns:24px 1fr;gap:0 10px;align-items:start}
+.check input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--acid)}
+.check label{font-weight:400;font-size:14px;margin:0}
+.check .err{grid-column:2}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;margin:8px 0 0;padding:0 20px;background:var(--acid);color:#121110;border:0;border-radius:var(--r);font:inherit;font-weight:800;font-size:18px;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.7;cursor:wait}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);margin-top:12px}
+.priv{color:var(--dim);font-size:12.5px;line-height:1.4;margin:12px 0 0}
+#ok:focus{outline:none}
+[hidden]{display:none!important}
+@media (min-width:600px){.wrap{padding-top:40px}.logo{width:170px;margin-bottom:28px}}

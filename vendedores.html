@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Links de vendedor · Praxia</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121110">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<style>
+table{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:14px}
+th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.l{word-break:break-all;color:var(--dim);font-size:13px}
+.row{display:flex;gap:10px}.row .btn{margin-top:10px;min-height:48px;font-size:16px}
+.out{background:var(--panel);border-radius:var(--r);padding:12px 14px;word-break:break-all;margin:12px 0 0;font-size:14px}
+.note{color:var(--dim);margin:0 0 16px}
+button.mini{min-height:40px;padding:0 12px;background:transparent;color:var(--ink);border:1.5px solid var(--ink);border-radius:10px;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <img class="logo" src="logo-horizontal-oscuro.png" alt="Praxia" width="160" height="40">
+  <h1>Tu link de vendedor</h1>
+  <p class="note">Cada persona que entra por tu link queda registrada con tu código.</p>
+
+  <div class="field">
+    <label for="nom">Nombre del vendedor</label>
+    <input id="nom" type="text" autocomplete="off" placeholder="Maicol">
+  </div>
+  <div id="res" hidden>
+    <p class="out" id="link"></p>
+    <div class="row">
+      <button class="btn" id="copiar" type="button">Copiar</button>
+      <a class="btn alt" id="wa" target="_blank" rel="noopener" href="#">Compartir por WhatsApp</a>
+    </div>
+  </div>
+  <p class="priv" id="msg" role="status"></p>
+
+  <h2 style="margin-top:28px;font-size:20px">Vendedores</h2>
+  <table>
+    <thead><tr><th>Código</th><th>Link</th><th></th></tr></thead>
+    <tbody id="tabla"></tbody>
+  </table>
+</main>
+<script>
+// Cambiar al publicar (con la barra final).
+var BASE = location.href.replace(/vendedores\.html.*$/, '').replace(/[?#].*$/, '');
+var VENDEDORES = ['maicol', 'juan', 'roger', 'praxiaxp88'];
+
+function toCode(s) {
+  s = String(s || '').toLowerCase();
+  try { s = s.normalize('NFD').replace(/[̀-ͯ]/g, ''); } catch (e) {}
+  return s.replace(/[\s_]+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+}
+function linkFor(code) { return BASE.replace(/\/?$/, '/') + '?ref=' + code; }
+function waFor(link) { return 'https://wa.me/?text=' + encodeURIComponent('Te comparto el acceso al seminario gratis de Praxia: ' + link); }
+function copy(text, msgEl) {
+  var done = function () { msgEl.textContent = 'Link copiado.'; };
+  var fail = function () { msgEl.textContent = 'No se pudo copiar: selecciona el link y cópialo a mano.'; };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fail); else fail();
+}
+var msg = document.getElementById('msg');
+var nom = document.getElementById('nom');
+nom.addEventListener('input', function () {
+  var code = toCode(nom.value), link = linkFor(code);
+  document.getElementById('res').hidden = !code;
+  if (!code) return;
+  document.getElementById('link').textContent = link;
+  document.getElementById('wa').href = waFor(link);
+  msg.textContent = '';
+});
+document.getElementById('copiar').addEventListener('click', function () { copy(document.getElementById('link').textContent, msg); });
+
+var tb = document.getElementById('tabla');
+VENDEDORES.forEach(function (c) {
+  var link = linkFor(c), tr = document.createElement('tr');
+  var a = document.createElement('td'); a.textContent = c; a.style.fontWeight = '700';
+  var b = document.createElement('td'); b.className = 'l'; b.textContent = link;
+  var d = document.createElement('td'), btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'mini'; btn.textContent = 'Copiar';
+  btn.addEventListener('click', function () { copy(link, msg); });
+  d.appendChild(btn); tr.appendChild(a); tr.appendChild(b); tr.appendChild(d); tb.appendChild(tr);
+});
+</script>
+</body>
+</html>
