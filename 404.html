@@ -26,7 +26,7 @@ a:focus-visible{outline:3px solid #f4f1ec;outline-offset:3px}
 /* PRAXIA-404-START */
 (function () {
   'use strict';
-  var SITE_ROOT = '/praxia-unete/';
+  var SITE_ROOT = '/';
   var RESERVED = ['a', 'b', 'vendedores.html', 'index.html', 'assets', '404.html', 'capturas', 'style.css', 'app.js', 'fonts.css'];
 
   // Misma funcion que app.js (copia literal; test-variantes.mjs verifica que sea identica).
@@ -51,7 +51,7 @@ a:focus-visible{outline:3px solid #f4f1ec;outline-offset:3px}
     if (RESERVED.indexOf(low) !== -1 || low.indexOf('.') !== -1) return { ref: null, url: null };
     var ref = normalizeRef(decoded);
     if (ref === 'directo' && low !== 'directo') return { ref: null, url: null }; // solo simbolos: no es un vendedor
-    var url = root + '?ref=' + encodeURIComponent(ref);
+    var url = root + 'a/?ref=' + encodeURIComponent(ref);
     var src = new URLSearchParams(search || '').get('src');
     if (src) url += '&src=' + encodeURIComponent(src);
     return { ref: ref, url: url };
